@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer App</title>
+    <style>
+      #time-container {
+        background-color: aliceblue;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        width: 100%;
+        max-width: 300px;
+        position: fixed;
+        top: 20px;
+        z-index: 1000;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f8;
+        margin: 0;
+        padding-top: 220px; /* ← this space gives room for fixed box */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #timestamp {
+        font-size: 3em;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+      }
+
+      #button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+      }
+
+      button {
+        color: black;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        min-width: 90px;
+      }
+
+      button:hover {
+        background-color: white;
+      }
+
+      /* #start-btn {
+        background-color: #28a745;
+      } */
+      #start-btn:hover {
+        background-color: #218838;
+      }
+
+      /* #pause-btn {
+        background-color: #ffc107;
+        color: #333;
+      } */
+      #pause-btn:hover {
+        background-color: #e0a800;
+      }
+
+      /* #resume-btn {
+        background-color: #17a2b8;
+      } */
+      #resume-btn:hover {
+        background-color: #138496;
+      }
+
+      /* #reset-btn {
+        background-color: #dc3545;
+      } */
+      #reset-btn:hover {
+        background-color: #c82333;
+      }
+
+      #lap-btn:hover {
+        background-color: #5a6268;
+      }
+      #root {
+        display: none;
+        margin-top: 20px;
+        width: 300px;
+        text-align: center;
+        max-height: 400px;
+        overflow-y: auto;
+        font-family: monospace;
+        padding: 10px;
+        background-color: aliceblue;
+        border-radius: 5px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      #current-time {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="current-time"><b>Current Time</b></p>
+    <div id="time-container">
+      <p id="timestamp">00:00:00</p>
+      <div id="button-container">
+        <button id="start-btn" onclick="handlestart()">start</button>
+        <button id="reset-btn" onclick="handlereset()">reset</button>
+        <button id="resume-btn" onclick="handleresume()">resume</button>
+        <button id="pause-btn" onclick="handlepause()">pause</button>
+        <button id="lap-btn" onclick="handlelap()">Lap 🚩</button>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>

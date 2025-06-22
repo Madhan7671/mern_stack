@@ -369,14 +369,7 @@ const data = {
             difficulty: "Medium",
             cuisine: "Pakistani",
             caloriesPerServing: 550,
-            tags: [
-                "Biryani",
-                "Chicken",
-                "Main course",
-                "Indian",
-                "Pakistani",
-                "Asian",
-            ],
+            tags: ["Biryani", "Chicken", "Main course", "Indian", "Pakistani", "Asian"],
             userId: 133,
             image: "https://cdn.dummyjson.com/recipe-images/11.webp",
             rating: 5,
@@ -413,14 +406,7 @@ const data = {
             difficulty: "Easy",
             cuisine: "Pakistani",
             caloriesPerServing: 420,
-            tags: [
-                "Chicken",
-                "Karahi",
-                "Main course",
-                "Indian",
-                "Pakistani",
-                "Asian",
-            ],
+            tags: ["Chicken", "Karahi", "Main course", "Indian", "Pakistani", "Asian"],
             userId: 49,
             image: "https://cdn.dummyjson.com/recipe-images/12.webp",
             rating: 4.8,
@@ -764,14 +750,7 @@ const data = {
         {
             id: 22,
             name: "Mango Lassi",
-            ingredients: [
-                "Ripe mango, peeled and diced",
-                "Yogurt",
-                "Milk",
-                "Honey",
-                "Cardamom powder",
-                "Ice cubes",
-            ],
+            ingredients: ["Ripe mango, peeled and diced", "Yogurt", "Milk", "Honey", "Cardamom powder", "Ice cubes"],
             instructions: [
                 "In a blender, combine diced mango, yogurt, milk, honey, and cardamom powder.",
                 "Blend until smooth and creamy.",
@@ -893,13 +872,7 @@ const data = {
         {
             id: 26,
             name: "Mexican Street Corn (Elote)",
-            ingredients: [
-                "Corn on the cob",
-                "Mayonnaise",
-                "Cotija cheese, crumbled",
-                "Chili powder",
-                "Lime wedges",
-            ],
+            ingredients: ["Corn on the cob", "Mayonnaise", "Cotija cheese, crumbled", "Chili powder", "Lime wedges"],
             instructions: [
                 "Grill or roast corn on the cob until kernels are charred.",
                 "Brush each cob with mayonnaise, then sprinkle with crumbled Cotija cheese and chili powder.",
@@ -1058,41 +1031,48 @@ const data = {
     limit: 30,
 };
 
+const parentElem = document.getElementsByTagName("main")[0];
+
 const { recipes } = data;
-const parent = document.getElementById("root");
-recipes.forEach(({ name, image, mealType, caloriesPerServing, rating, reviewCount, prepTimeMinutes, cuisine, ingredients, instructions, servings, difficulty,
-    tags, cookTimeMinutes }) => {
-    const newclass = document.createElement("div");
-    const popupdata = {
-        name, instructions, ingredients, tags, servings, difficulty, cuisine, rating
-        , prepTimeMinutes, reviewCount, cookTimeMinutes, caloriesPerServing
-    };
-    newclass.className = "card";
-    const time = prepTimeMinutes + cookTimeMinutes;
-    newclass.innerHTML = `<h1>${name}</h1><h4>${mealType}</h4><h2>${caloriesPerServing} cal</h2>
-        <image src="${image}" alt="${name}" class="recipe-img" weidth="100%" height=180px><h3>⭐${rating}  (${reviewCount}) 
-        ⌛${time} min
-        📌${cuisine}</h3>`;
-    newclass.addEventListener("click", () => {
-        handlecardclick(popupdata);
-    });
-    parent.appendChild(newclass);
 
+recipes.forEach(({ name, image, cuisine, rating, servings }) => {
+    const newDiv = document.createElement("div");
+    const popupdata = { name, cuisine, rating, servings };
+    newDiv.className = "card";
+    newDiv.innerHTML = `
+        <p>${name}</p>
+        <img src='${image}abcd' width='200' height='200'>
+        <p>${cuisine}</p>
+        <p>${rating}</p>
+        <p>${servings}</p>
+        <button
+        onclick='handleCardClick(${JSON.stringify(popupdata)})'
+        >
+          Click Me
+        </button>
+    `;
+
+    parentElem.appendChild(newDiv);
 });
-const popcontent = document.getElementById("popupcontent");
-const popupview = document.getElementById("pop-up-view");
-const handlecardclick = (obj) => {
-    popupview.style.display = "flex";
-    const time = obj.cookTimeMinutes + obj.prepTimeMinutes;
-    popcontent.innerHTML = `<h1>${obj.name}</h1><h3>🏷️${obj.tags}</h3><p3>⭐${obj.rating}  (${obj.reviewCount})
-        📌${obj.cuisine} ⌛ ${time} min</p3><p><b> Difficulty level</b> : ${obj.difficulty}</p><h3><u>Making process</u></h3><h4>Ingredients</h4><p>${obj.ingredients}</p>
-        <h4>Instructions</h4><p>${obj.instructions}</p><p><b>Preparation Time</b> : ${obj.prepTimeMinutes}min⌛</p><p><b>Cooking time:</b>
-         ${obj.cookTimeMinutes} min⌛</p><b>More information about this dish:</b><p>The total calories perserving of this ${obj.cuisine} dish is about ${obj.caloriesPerServing} calories. 
-         And the total servings for this ${obj.cuisine} dish ${obj.name} at once is ${obj.servings}.</p><p style="text-align:center;"><b>Thank you for following our guidlines
-         for making this dish 😊.</b></p>`;
 
+const popUpView = document.getElementById("pop-up-view");
+const handleCardClick = (obj) => {
+    // alert("clicked");
+    popUpView.style.display = "flex";
+    popupcontent.innerHTML = `<P>${obj.name}</P>
+    <p>${obj.cuisine}</p>
+    <p>${obj.ratig}</p>
+    <p>${obj.servings}</p>`;
 };
+
+// const homeButton = document.getElementsByTagName("button")[0];
+
+// homeButton.addEventListener("click", () => {
+//     alert("Programmatically handled!");
+// });
 
 const handleclosepopup = () => {
-    popupview.style.display = "none";
+    popUpView.style.display = "none";
 };
+
+
