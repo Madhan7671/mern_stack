@@ -53,11 +53,10 @@ header{
 
 #chat-list{
     background-color:white;
-    border-radius: 2rem;
 }
 
 #chat-messages-container{
-    background-color:#5A5A5A;
+    background-color:#161616;
     display: none;
 }
 
