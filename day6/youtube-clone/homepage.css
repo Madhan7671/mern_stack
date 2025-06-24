@@ -10,11 +10,13 @@
     grid-template-columns: repeat(auto-fit, 350px);
     gap: 1rem;
 }
-
 .trending-card{
     background-color: antiquewhite;
 }
 
+.trending-card:hover{
+    border: solid black;
+}
 .viedo-thumb-img {
-    width: 100%;
+    width: 100%;    
 }
